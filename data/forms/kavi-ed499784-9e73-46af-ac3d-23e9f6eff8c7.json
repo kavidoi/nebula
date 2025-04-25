@@ -1,0 +1,101 @@
+{
+  "formId": "ed499784-9e73-46af-ac3d-23e9f6eff8c7",
+  "username": "kavi",
+  "apiKey": "patJ8vpV2mZM8PVu8.217d4be5e9645bd9a4e4659231c7bf6bdc6839e365ae912f74fcb79625709cc3",
+  "baseId": "appqWloaGKCaVKck4",
+  "tableName": "Comida",
+  "fields": [
+    {
+      "type": "singleLineText",
+      "id": "fldXQM6h26mGnatsU",
+      "name": "Nombre",
+      "include": true,
+      "label": "Nombre",
+      "placeholder": "",
+      "defaultValue": "",
+      "required": false,
+      "showFormula": false,
+      "numValues": 1
+    },
+    {
+      "type": "currency",
+      "options": {
+        "precision": 0,
+        "symbol": "$"
+      },
+      "id": "fldeKINAFHgt1j8OT",
+      "name": "Precios",
+      "include": true,
+      "label": "Precios",
+      "placeholder": "",
+      "defaultValue": "",
+      "required": false,
+      "showFormula": false,
+      "numValues": 1
+    },
+    {
+      "type": "multipleRecordLinks",
+      "options": {
+        "linkedTableId": "tblJSKGb4IBeyUwyo",
+        "isReversed": false,
+        "prefersSingleRecordLink": false,
+        "inverseLinkFieldId": "fldRXcKWhL0Wt5wuW"
+      },
+      "id": "fldDkhJupkydvEgvC",
+      "name": "Reservas",
+      "include": false,
+      "label": "Reservas",
+      "placeholder": "",
+      "defaultValue": "",
+      "required": false,
+      "showFormula": false,
+      "numValues": 1
+    },
+    {
+      "type": "multilineText",
+      "id": "fldoqkqTHrnWDdSSa",
+      "name": "Descripción",
+      "include": false,
+      "label": "Descripción",
+      "placeholder": "",
+      "defaultValue": "",
+      "required": false,
+      "showFormula": false,
+      "numValues": 1
+    },
+    {
+      "type": "singleSelect",
+      "options": {
+        "choices": [
+          {
+            "id": "selYYi0bauvlwB8wv",
+            "name": "Todo",
+            "color": "redLight2"
+          },
+          {
+            "id": "selDOmvRObTfGTcDX",
+            "name": "In progress",
+            "color": "yellowLight2"
+          },
+          {
+            "id": "selVqhd3pcpgHZOe9",
+            "name": "Done",
+            "color": "greenLight2"
+          }
+        ]
+      },
+      "id": "fldlbhGNTDzRWV56c",
+      "name": "Status",
+      "include": false,
+      "label": "Status",
+      "placeholder": "",
+      "defaultValue": "",
+      "required": false,
+      "showFormula": false,
+      "numValues": 1
+    }
+  ],
+  "formTitle": "Nebula Comida",
+  "createdAt": "2025-04-23T05:21:15.995Z",
+  "isActive": true
+}
