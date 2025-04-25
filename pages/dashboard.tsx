@@ -86,7 +86,7 @@ function Dashboard() {
                 <button onClick={() => {
                   router.push({
                     pathname: '/builder',
-                    query: { tableName: f.tableName, apiKey: user.apiKey, baseId: user.baseId }
+                    query: { tableName: f.tableName, apiKey: f.apiKey, baseId: f.baseId }
                   })
                 }}>
                   Use as Base
