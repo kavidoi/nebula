@@ -1,4 +1,3 @@
-import { Pool } from 'pg'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -32,40 +31,29 @@ export async function comparePasswords(password: string, hash: string): Promise<
 }
 
 export async function createSession(userId: number): Promise<string> {
-  const token = jwt.sign({ userId }, JWT_SECRET, {
-    expiresIn: '7d', // 7 days
-  })
-
+  const token = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' })
   const expiresAt = new Date()
   expiresAt.setDate(expiresAt.getDate() + 7)
-
   await query(
     'INSERT INTO sessions (id, user_id, expires_at) VALUES ($1, $2, $3)',
     [token, userId, expiresAt]
   )
-
   return token
 }
 
 export async function verifySession(token: string): Promise<User | null> {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as { userId: number }
-    const session = await query(
+    const sessionRes = await query(
       'SELECT * FROM sessions WHERE id = $1 AND expires_at > NOW()',
       [token]
     )
-
-    if (session.rows.length === 0) {
-      return null
-    }
-
-    const user = await query(
-      'SELECT * FROM users WHERE id = $1',
-      [decoded.userId]
+    if (sessionRes.rows.length === 0) return null
+    const userRes = await query(
+      'SELECT * FROM users WHERE id = $1', [decoded.userId]
     )
-
-    return user.rows[0]
-  } catch (error) {
+    return userRes.rows[0] || null
+  } catch {
     return null
   }
 }
@@ -88,9 +76,5 @@ export async function getUserByUsername(username: string): Promise<User | null> 
 }
 
 export async function clearExpiredSessions() {
-  await query(
-    'DELETE FROM sessions WHERE expires_at <= NOW()'
-  )
+  await query('DELETE FROM sessions WHERE expires_at <= NOW()')
 }
-
-export { query }
